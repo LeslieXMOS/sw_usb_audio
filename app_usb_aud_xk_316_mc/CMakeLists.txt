@@ -19,7 +19,7 @@ set(SW_USB_AUDIO_FLAGS ${EXTRA_BUILD_FLAGS} -O3
 #
 # HiBW configs
 #
-include(${CMAKE_CURRENT_LIST_DIR}/configs_hibw.cmake)
+# include(${CMAKE_CURRENT_LIST_DIR}/configs_hibw.cmake)
 
 project(app_usb_aud_xk_316_mc)
 set(APP_HW_TARGET xk-audio-316-mc.xn)
@@ -49,36 +49,5 @@ set(APP_HW_TARGET xk-audio-316-mc.xn)
 
 # Audio Class 2, Async, I2S Master, 8xInput, 8xOutput
 set(APP_COMPILER_FLAGS_2AMi8o8xxxxxx ${SW_USB_AUDIO_FLAGS})
-
-# Audio Class 2, Async, I2S Master, 10xInput, 10xOutput, S/PDIF Tx, S/PDIF Rx
-set(APP_COMPILER_FLAGS_2AMi10o10xssxxx ${SW_USB_AUDIO_FLAGS}   -DXUA_SPDIF_TX_EN=1
-                                                               -DXUA_SPDIF_RX_EN=1)
-# Audio Class 2, Async, I2S Master, 16xInput, 16xOutput, ADAT Tx, ADAT Rx
-set(APP_COMPILER_FLAGS_2AMi16o16xxxaax ${SW_USB_AUDIO_FLAGS}   -DXUA_ADAT_RX_EN=1
-                                                               -DXUA_ADAT_TX_EN=1)
-
-# Audio Class 2, Async, I2S Master, 16xInput, 16xOutput, ADAT Tx, ADAT Rx
-# Note, limited to 96kHz sample rate
-set(APP_COMPILER_FLAGS_2AMi18o18mssaax ${SW_USB_AUDIO_FLAGS}   -DMIDI=1
-                                                               -DXUA_ADAT_RX_EN=1
-                                                               -DXUA_ADAT_TX_EN=1
-                                                               -DXUA_SPDIF_TX_EN=1
-                                                               -DXUA_SPDIF_RX_EN=1
-                                                               -DMAX_FREQ=96000)
-
-#
-# Partially-tested build configs
-#
-include(${CMAKE_CURRENT_LIST_DIR}/configs_partial.cmake)
-
-#
-# Build (only) tested build configs
-#
-include(${CMAKE_CURRENT_LIST_DIR}/configs_build.cmake)
-
-#
-# Build configs used only for testing purpses
-#
-include(${CMAKE_CURRENT_LIST_DIR}/configs_test.cmake)
 
 XMOS_REGISTER_APP()
